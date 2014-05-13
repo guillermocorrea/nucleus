@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{nucleus node_modules}" />
-    <file url="PROJECT" libraries="{mongodb-DefinitelyTyped, mongoose-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{mongodb-DefinitelyTyped, mongoose-DefinitelyTyped, nucleus node_modules}" />
     <includedPredefinedLibrary name="Node.js Globals" />
   </component>
 </project>

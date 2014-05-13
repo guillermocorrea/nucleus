@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var auditable = require('./plugins/auditable');
 var bcrypt = require('bcrypt-nodejs');
+var _ = require('underscore');
 
 // Constants
 var BCRYPT_COST = 12;
@@ -21,7 +22,8 @@ var userSchema = new Schema({
         type  : {type: String},
         value : String
     }],
-    passwordHash: String
+    passwordHash: String,
+    roles: Array
 });
 
 userSchema.plugin(auditable, {index: true});
@@ -42,6 +44,11 @@ userSchema.statics.hashPassword = function (passwordRaw, fn) {
 userSchema.statics.comparePasswordAndHash = function (password, passwordHash, fn) {
     // compare the password to the passwordHash
     bcrypt.compare(password, passwordHash, fn);
+};
+
+// check if the instance has the specified role
+userSchema.methods.hasRole = function (role) {
+    return _.contains(this.roles, role);
 };
 // Export the User model
 module.exports = mongoose.model('User', userSchema);
