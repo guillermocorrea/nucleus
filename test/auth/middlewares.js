@@ -51,7 +51,7 @@ describe('Authenticated: routes', function () {
                 .send(post)
                 .expect(302)
                 .end(function (err, res) {
-                    should.not.exist(err);
+                    should.not.exist(err); // fuck
                     // confirm the redirect
                     res.header.location.should.include('/account');
                     done();
