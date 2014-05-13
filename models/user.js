@@ -6,7 +6,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var auditable = require('./plugins/auditable');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 // Constants
 var BCRYPT_COST = 12;
@@ -34,7 +34,8 @@ userSchema.statics.hashPassword = function (passwordRaw, fn) {
 
     // encrypt the password using bcrypt; pass the callback function
     // `fn` to bcrypt.hash()
-    bcrypt.hash(passwordRaw, BCRYPT_COST, fn);
+    // bcrypt.hash(passwordRaw, BCRYPT_COST, fn);
+    bcrypt.hash(passwordRaw, null, null, fn);
 };
 
 userSchema.statics.comparePasswordAndHash = function (password, passwordHash, fn) {

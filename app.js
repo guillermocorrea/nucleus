@@ -1,21 +1,18 @@
-// BASE SETUP
-// =============================================================================
+var express = require('express');
+var app = express();
+var User = require('./models/user');
 
-// call the packages we need
-var express    = require('express'); 		// call express
-var app        = exports.app = express();   // define our express app
-var bodyParser = require('body-parser');
-var mongoose   = require('mongoose');
-var config = require('./config');
+// app.get('/', routes.index);
+// app.get('/users', User.list);
 
-mongoose.connect(config.db[app.settings.env]); // connect to our database
+app.get('/add/:first/:second', function (req, res) {
+    // convert the two values to floats and add them together
+    var sum = parseFloat(req.params.first) + parseFloat(req.params.second);
+    res.send(200, String(sum));
+});
 
-// configure app to use bodyParser()
-// this will let us get the data from a POST
-app.use(bodyParser());
-var port = process.env.PORT || 8080; 		// set our port
-// START THE SERVER
-// =============================================================================
+var port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log('Magic happens on port ' + port);
+module.exports = app;
+console.log('Magin happens on port ' + port);

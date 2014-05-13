@@ -18,7 +18,7 @@ beforeEach(function (done) {
 
     function clearDB() {
         for (var i in mongoose.connection.collections) {
-            mongoose.connection.collections[i].remove();
+            mongoose.connection.collections[i].remove(function() {});
         }
         return done();
     }
