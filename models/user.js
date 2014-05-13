@@ -20,7 +20,8 @@ var userSchema = new Schema({
     emails : [{
         type  : {type: String},
         value : String
-    }]
+    }],
+    passwordHash: String
 });
 
 userSchema.plugin(auditable, {index: true});
